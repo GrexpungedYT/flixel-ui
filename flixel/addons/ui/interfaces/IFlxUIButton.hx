@@ -1,6 +1,6 @@
 package flixel.addons.ui.interfaces;
 
-import flash.display.BitmapData;
+import openfl.display.BitmapData;
 import flixel.addons.ui.FlxUI9SliceSprite;
 import flixel.addons.ui.FlxUIText;
 import flixel.FlxSprite;
@@ -57,5 +57,9 @@ interface IFlxUIButton extends IFlxUIWidget extends IHasParams extends IFlxDestr
 	public function loadGraphicsUpOverDown(asset:Dynamic, for_toggle:Bool = false, ?key:String):Void;
 	public function forceStateHandler(event:String):Void;
 
+	#if (flixel >= version("5.7.0"))
+	public var status(default, set):FlxButtonState;
+	#else
 	public var status(default, set):Int;
+	#end
 }

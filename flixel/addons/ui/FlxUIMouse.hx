@@ -1,7 +1,7 @@
 package flixel.addons.ui;
 
 #if FLX_MOUSE
-import flash.display.Sprite;
+import openfl.display.Sprite;
 import flixel.FlxG;
 import flixel.input.mouse.FlxMouse;
 
@@ -23,17 +23,28 @@ class FlxUIMouse extends FlxMouse
 	 * Called by the internal game loop to update the mouse pointer's position in the game world.
 	 * Also updates the just pressed/just released flags.
 	 */
-	private override function update():Void
+	override function update():Void
 	{
-		var oldScreenX:Int = _globalScreenX;
-		var oldScreenY:Int = _globalScreenY;
-
+		#if (flixel < version("5.9.0"))
+		final oldScreenX = _globalScreenX;
+		final oldScreenY = _globalScreenY;
+		#else
+		final oldRawX = _rawX;
+		final oldRawY = _rawY;
+		#end
+		
 		super.update();
 
 		if (!updateGlobalScreenPosition)
 		{
+			#if (flixel < version("5.9.0"))
 			_globalScreenX = oldScreenX;
 			_globalScreenY = oldScreenY;
+			#else
+			_rawX = oldRawX;
+			_rawY = oldRawY;
+			#end
+			updatePositions();
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package flixel.addons.ui;
 
-import flash.geom.Rectangle;
+import openfl.geom.Rectangle;
 import flixel.addons.ui.interfaces.IEventGetter;
 import flixel.addons.ui.interfaces.IFlxUIButton;
 import flixel.addons.ui.interfaces.IFlxUIClickable;
@@ -304,7 +304,7 @@ class FlxUITabMenu extends FlxUIGroup implements IResizable implements IFlxUICli
 			return; // DO NOT ADD A GROUP TO ITSELF
 		}
 
-		if (!hasThis(g))
+		if (!contains(g))
 		{ // ONLY ADD IF IT DOESN'T EXIST
 			g.y = (_back.y - y);
 			add(g);
